@@ -10,10 +10,10 @@ s1_ohdg_crea # time-series of creatinine-corrected urinary 8-OHdG levels for sub
 s2_ohdg_vol # time-series of volume-corrected urinary 8-OHdG levels for subject 2
 s2_ohdg_crea # time-series of creatinine-corrected urinary 8-OHdG levels for subject 2
 
-s1_ohdg_vol <- Export_HN_AG_OHdG$AG_OHdG_Volumen_Correction[1:55]/12/1000
-s1_ohdg_crea <- Export_HN_AG_OHdG$AG_OHdG[1:55]
-s2_ohdg_vol <- Export_HN_AG_OHdG$HN_OHdG_Volumen_Correction[1:63]/12/1000
-s2_ohdg_crea <- Export_HN_AG_OHdG$HN_OHdG[1:63]
+s1_ohdg_vol <- Export_S1_S2_OHdG$S2_OHdG_Volumen_Correction[1:55]/12/1000
+s1_ohdg_crea <- Export_S1_S2_OHdG$S2_OHdG[1:55]
+s2_ohdg_vol <- Export_S1_S2_OHdG$S1_OHdG_Volumen_Correction[1:63]/12/1000
+s2_ohdg_crea <- Export_S1_S2_OHdG$S1_OHdG[1:63]
 
 
 ################## Coefficients of variation ##################
@@ -88,66 +88,66 @@ cor.test(s2_ohdg_crea[1:62], s2_ohdg_crea[2:63])
 ############################ Plots ############################
 
 #series
-hn_cr_l<-data.frame(c(1:63),hn_cr)
-hn_exr_l<-data.frame(c(1:63),hn_exr)
-ag_cr_l<-data.frame(c(1:55),ag_cr)
-ag_exr_l<-data.frame(c(1:55),ag_exr)
+s1_cr_l<-data.frame(c(1:63),s1_cr)
+s1_exr_l<-data.frame(c(1:63),s1_exr)
+s2_cr_l<-data.frame(c(1:55),s2_cr)
+s2_exr_l<-data.frame(c(1:55),s2_exr)
 
-l1<-ggplot(hn_cr_l,aes(c(1:63),hn_cr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ylab("8-OHdG (ng/mg creatinine)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,126,by = 20))+ggtitle("Subject 1")
-l2<-ggplot(hn_exr_l,aes(c(1:63),hn_exr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14))+ylab("8-OHdG (µg/h)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,112,by = 20))
-l3<-ggplot(ag_cr_l,aes(c(1:55),ag_cr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ylab("8-OHdG (ng/mg creatinine)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,55,by = 10))+ggtitle("Subject 2")
-l4<-ggplot(ag_exr_l,aes(c(1:55),ag_exr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14))+ylab("8-OHdG (µg/h)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,63,by = 10))
+l1<-ggplot(s1_cr_l,aes(c(1:63),s1_cr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ylab("8-OHdG (ng/mg creatinine)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,126,by = 20))+ggtitle("Subject 1")
+l2<-ggplot(s1_exr_l,aes(c(1:63),s1_exr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14))+ylab("8-OHdG (µg/h)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,112,by = 20))
+l3<-ggplot(s2_cr_l,aes(c(1:55),s2_cr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ylab("8-OHdG (ng/mg creatinine)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,55,by = 10))+ggtitle("Subject 2")
+l4<-ggplot(s2_exr_l,aes(c(1:55),s2_exr))+geom_line()+theme_classic()+theme(axis.text = element_text(size = 16),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),legend.text=element_text(size=14))+ylab("8-OHdG (µg/h)")+xlab("Time (12h-intervals)")+scale_x_continuous(breaks = seq(1,63,by = 10))
 
 series<-plot_grid(l1,l3,l2,l4,ncol=2,align="hv")
 ggsave("series.jpg", series, dpi = 150, height = 10, width = 15)
 
 #acf
-acf_ag_cr<-acf(ag_cr_fit$residuals,lag.max = 6)
-a <- data.frame(acf_ag_cr$acf[2:7],acf_ag_cr$lag[2:7],acf_ag_cr$acf[2:7])    
-acf1 <- ggplot(a,aes(acf_ag_cr$lag[2:7],acf_ag_cr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (ng/mg creatinine)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ggtitle("Subject 2")+scale_x_continuous(breaks=c(1:6))
+acf_s2_cr<-acf(s2_cr_fit$residuals,lag.max = 6)
+a <- data.frame(acf_s2_cr$acf[2:7],acf_s2_cr$lag[2:7],acf_s2_cr$acf[2:7])    
+acf1 <- ggplot(a,aes(acf_s2_cr$lag[2:7],acf_s2_cr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (ng/mg creatinine)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ggtitle("Subject 2")+scale_x_continuous(breaks=c(1:6))
 
-acf_ag_exr<-acf(ag_exr,lag.max = 6)
-b <- data.frame(acf_ag_exr$acf[2:7],acf_ag_exr$lag[2:7],acf_ag_exr$acf[2:7])    
-acf2 <- ggplot(b,aes(acf_ag_exr$lag[2:7],acf_ag_exr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (µg/h)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18))+scale_x_continuous(breaks=c(1:6))
+acf_s2_exr<-acf(s2_exr,lag.max = 6)
+b <- data.frame(acf_s2_exr$acf[2:7],acf_s2_exr$lag[2:7],acf_s2_exr$acf[2:7])    
+acf2 <- ggplot(b,aes(acf_s2_exr$lag[2:7],acf_s2_exr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (µg/h)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18))+scale_x_continuous(breaks=c(1:6))
 
-acf_hn_cr<-acf(hn_cr,lag.max = 6)
-c <- data.frame(acf_hn_cr$acf[2:7],acf_hn_cr$lag[2:7],acf_hn_cr$acf[2:7])    
-acf3 <- ggplot(c,aes(acf_hn_cr$lag[2:7],acf_hn_cr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (ng/mg creatinine)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ggtitle("Subject 1")+scale_x_continuous(breaks=c(1:6))
+acf_s1_cr<-acf(s1_cr,lag.max = 6)
+c <- data.frame(acf_s1_cr$acf[2:7],acf_s1_cr$lag[2:7],acf_s1_cr$acf[2:7])    
+acf3 <- ggplot(c,aes(acf_s1_cr$lag[2:7],acf_s1_cr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (ng/mg creatinine)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18),plot.title = element_text(face = "bold", size=24, hjust = 0.5))+ggtitle("Subject 1")+scale_x_continuous(breaks=c(1:6))
 
-acf_hn_exr<-acf(hn_exr,lag.max = 6)
-d <- data.frame(acf_hn_exr$acf[2:7],acf_hn_exr$lag[2:7],acf_hn_exr$acf[2:7])    
-acf4 <- ggplot(d,aes(acf_hn_exr$lag[2:7],acf_hn_exr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (µg/h)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18))+scale_x_continuous(breaks=c(1:6))
+acf_s1_exr<-acf(s1_exr,lag.max = 6)
+d <- data.frame(acf_s1_exr$acf[2:7],acf_s1_exr$lag[2:7],acf_s1_exr$acf[2:7])    
+acf4 <- ggplot(d,aes(acf_s1_exr$lag[2:7],acf_s1_exr$acf[2:7]))+geom_bar(stat="identity",fill="grey",color="black",alpha=10,size=.8)+geom_hline(yintercept = c(0.19,-0.19),linetype="dashed",color="black",alpha=.8)+theme(axis.title.y = element_text(size=18, face="bold"), axis.title.x = element_text(size=18, face="bold",vjust = 2))+xlab("Lag")+ylab("ACF 8-OHdG (µg/h)")+theme_classic()+theme(axis.text = element_text(size = 14),axis.title.x=element_text(size=18),axis.title.y = element_text(size=18))+scale_x_continuous(breaks=c(1:6))
 
 acfs <- plot_grid(acf3,NULL,acf1,acf4,NULL,acf2,ncol=3, rel_widths = c(1, 0.05, 1))
 ggsave("acfs.jpg", acfs, dpi = 150, height = 10, width = 13)
 
 #rain
-hn1 <- data_1x1( 
+s1.1 <- data_1x1( 
   array_1 = s2_ohdg_crea[c(seq(1,63,2))],
-  array_2 = hn_cr[c(seq(2,63,2))],
+  array_2 = s1_cr[c(seq(2,63,2))],
   jit_distance = .09,
   jit_seed = 321)
 
-hn2 <- data_1x1( 
-  array_1 = hn_exr[c(seq(1,63,2))],
-  array_2 = hn_exr[c(seq(2,63,2))],
+s1.2 <- data_1x1( 
+  array_1 = s1_exr[c(seq(1,63,2))],
+  array_2 = s1_exr[c(seq(2,63,2))],
   jit_distance = .09,
   jit_seed = 321)
 
-ag1 <- data_1x1( 
-  array_1 = ag_cr[c(seq(1,55,2))],
-  array_2 = ag_cr[c(seq(2,55,2))],
+s2.1 <- data_1x1( 
+  array_1 = s2_cr[c(seq(1,55,2))],
+  array_2 = s2_cr[c(seq(2,55,2))],
   jit_distance = .09,
   jit_seed = 321)
 
-ag2 <- data_1x1( 
-  array_1 = ag_exr[c(seq(1,55,2))],
-  array_2 = ag_exr[c(seq(2,55,2))],
+s2.2 <- data_1x1( 
+  array_1 = s2_exr[c(seq(1,55,2))],
+  array_2 = s2_exr[c(seq(2,55,2))],
   jit_distance = .09,
   jit_seed = 321)
 
 a<-raincloud_1x1_repmes(
-  data = hn1,
+  data = s1.1,
   line_color = 'gray',
   col = (c("blue", "red")),
   fill = (c("blue", "red")),
@@ -163,7 +163,7 @@ a<-raincloud_1x1_repmes(
   labs(title = "Subject 1")
 
 b<-raincloud_1x1_repmes(
-  data = hn2,
+  data = s1.2,
   line_color = 'gray',
   col = (c("blue", "red")),
   fill = (c("blue", "red")),
@@ -178,7 +178,7 @@ b<-raincloud_1x1_repmes(
   theme(axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 12), axis.title.y = element_text(size = 14)) 
 
 c<-raincloud_1x1_repmes(
-  data = ag1,
+  data = s2.1,
   line_color = 'gray',
   col = (c("blue", "red")),
   fill = (c("blue", "red")),
@@ -194,7 +194,7 @@ c<-raincloud_1x1_repmes(
   labs(title = "Subject 2")
 
 d<-raincloud_1x1_repmes(
-  data = ag2,
+  data = s2.2,
   line_color = 'gray',
   col = (c("blue", "red")),
   fill = (c("blue", "red")),
